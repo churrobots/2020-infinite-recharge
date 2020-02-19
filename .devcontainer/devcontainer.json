@@ -1,0 +1,43 @@
+{ 
+  "name": "frc-devcontainer",
+  "dockerFile": "Dockerfile",
+  "context": "..",
+
+  // Improve write performance for the ./build directory per advanced config
+  // recommendations in the VSCode remote container docs.
+  // https://code.visualstudio.com/docs/remote/containers-advanced#_improving-container-disk-performance
+  // Also create a volume for VSCode to install extensions to prevent extension
+  // downloads every time container is rebuilt. You will need to delete this
+  // volume separately to get a fully clean install.
+  // https://code.visualstudio.com/docs/remote/containers-advanced#_avoiding-extension-reinstalls-on-container-rebuild
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "src=${localWorkspaceFolder},dst=/workspace,type=bind,consistency=cached",
+  "postCreateCommand": "sudo chown vscode:vscode build",
+  "runArgs": [
+    "-u", "vscode",
+    "-v", "wpilib-build-products:/workspace/build",
+    "-v", "vscode-extension-cache:/home/vscode/.vscode-server"
+  ],
+
+  // Include all the default VSCode extensions that you'll want
+  // for doing FRC build work in Java.
+  "extensions": [
+    "vscjava.vscode-java-pack",
+    "vscjava.vscode-java-dependency",
+    "vscjava.vscode-java-test",
+    "wpilibsuite.vscode-wpilib",
+    "visualstudioexptteam.vscodeintellicode"
+  ],
+
+  // Create the VSCode default settings. Some of these are needed for
+  // proper running of the Java environment, some of them are optional
+  // for simply cleaning up the workspace
+  "settings": {
+
+    // These settings are required for the Java container environment.
+    "java.home": "/docker-java-home",
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "terminal.integrated.rendererType": "dom"
+
+  }
+}
