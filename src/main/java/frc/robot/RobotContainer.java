@@ -26,16 +26,15 @@ public class RobotContainer {
   public RobotContainer() {
 
     // Connect to all the gamepads and subsystems on the robot.
-    Constants constants = new Constants();
-    Gamepad driverGamepad = new Gamepad(constants.driverGamepadPort);
-    DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem(constants);
+    Gamepad driverGamepad = new Gamepad(Constants.driverGamepadPort);
+    DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
 
     // Create commands.
     Command driveForwardALittleBit = new DriveForTime(drivetrainSubsystem, 2, 0.2, 0.2);
     Command driveWithJoysticks = new DriveAsTank(
       drivetrainSubsystem, driverGamepad.leftYAxis, driverGamepad.rightYAxis);
 
-    // Map the commands to the controller, autonomous mode, and defaults.
+    // Describe when the commands should be scheduled.
     this.autonomousCommand = driveForwardALittleBit;
     drivetrainSubsystem.setDefaultCommand(driveWithJoysticks);
     driverGamepad.buttonSouth.whenPressed(driveForwardALittleBit);

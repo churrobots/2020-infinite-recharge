@@ -16,10 +16,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   protected DifferentialDrive differentialDrive;
 
-  public DrivetrainSubsystem(Constants constants) {
+  public DrivetrainSubsystem() {
 
-    PWMVictorSPX leftMotors = new PWMVictorSPX(constants.leftMotorsPWM);
-    PWMVictorSPX rightMotors = new PWMVictorSPX(constants.rightMotorsPWM);
+    PWMVictorSPX leftMotors = new PWMVictorSPX(Constants.leftMotorsPWM);
+    PWMVictorSPX rightMotors = new PWMVictorSPX(Constants.rightMotorsPWM);
     this.differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
 
   }

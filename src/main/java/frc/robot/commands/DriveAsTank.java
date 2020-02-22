@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  * An example command that uses an example subsystem.
  */
 public class DriveAsTank extends CommandBase {
+
   protected final DrivetrainSubsystem drivetrainSubsystem;
   protected final Axis leftAxis;
   protected final Axis rightAxis;
@@ -23,7 +24,7 @@ public class DriveAsTank extends CommandBase {
     this.drivetrainSubsystem = drivetrainSubsystem;
     this.leftAxis = leftAxis;
     this.rightAxis = rightAxis;
-    addRequirements(this.drivetrainSubsystem);
+    this.addRequirements(this.drivetrainSubsystem);
   }
 
   @Override

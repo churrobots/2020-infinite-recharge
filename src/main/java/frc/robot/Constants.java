@@ -13,11 +13,9 @@ package frc.robot;
  */
 public final class Constants {
 
-  public Constants() {}
+  public static final int leftMotorsPWM = 0;
+  public static final int rightMotorsPWM = 1;
 
-  public final int leftMotorsPWM = 0;
-  public final int rightMotorsPWM = 1;
-
-  public final int driverGamepadPort = 0;
+  public static final int driverGamepadPort = 0;
 
 }

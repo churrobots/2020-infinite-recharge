@@ -19,7 +19,7 @@ public class DriveForTime extends CommandBase {
 
   public DriveForTime(DrivetrainSubsystem drivetrainSubsystem, double secondsToDrive, double leftSpeed, double rightSpeed) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drivetrainSubsystem);
+    this.addRequirements(drivetrainSubsystem);
     this.drivetrainSubsystem = drivetrainSubsystem;
     this.secondsToDrive = secondsToDrive;
     this.leftSpeed = leftSpeed;
