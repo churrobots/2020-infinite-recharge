@@ -8,13 +8,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Arms;
 
 public class LowerArmDown extends CommandBase {
   /**
    * Creates a new LowerArmDown.
    */
-  public LowerArmDown() {
+  Arms arms;
+  double startTime;
+  double millisecondsUntilDown = 2000;
+
+  public LowerArmDown(Arms a) {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(a);
+    arms = a;
+    startTime = System.currentTimeMillis();
   }
 
   // Called when the command is initially scheduled.
@@ -25,11 +33,19 @@ public class LowerArmDown extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    arms.runArmMotor(-0.25);
+    // double elapsedMilliseconds = System.currentTimeMillis() - startTime;
+    // if (elapsedMilliseconds > millisecondsUntilDown) {
+    //   arms.runArmMotor(-0.10);
+    // } else {
+    //   arms.runArmMotor(-0.40);
+    // }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    arms.runArmMotor(0);
   }
 
   // Returns true when the command should end.

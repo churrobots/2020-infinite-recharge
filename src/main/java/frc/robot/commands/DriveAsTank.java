@@ -19,11 +19,13 @@ public class DriveAsTank extends CommandBase {
   protected final DrivetrainSubsystem drivetrainSubsystem;
   protected final Axis leftAxis;
   protected final Axis rightAxis;
+  protected final Axis boostAxis;
 
-  public DriveAsTank(DrivetrainSubsystem drivetrainSubsystem, Axis leftAxis, Axis rightAxis) {
+  public DriveAsTank(DrivetrainSubsystem drivetrainSubsystem, Axis leftAxis, Axis rightAxis, Axis boostAxis) {
     this.drivetrainSubsystem = drivetrainSubsystem;
     this.leftAxis = leftAxis;
     this.rightAxis = rightAxis;
+    this.boostAxis = boostAxis;
     this.addRequirements(this.drivetrainSubsystem);
   }
 
@@ -33,7 +35,13 @@ public class DriveAsTank extends CommandBase {
 
   @Override
   public void execute() {
-    this.drivetrainSubsystem.tankDrive(this.leftAxis.get(), this.rightAxis.get());
+    double normalSpeed = 0.7;
+    double maxBoost = 1 - normalSpeed;
+    double boost = boostAxis.get() * maxBoost;
+    double maxSpeed = normalSpeed + maxBoost * boost;
+    double leftSpeed = this.leftAxis.get() * maxSpeed;
+    double rightSpeed = this.rightAxis.get() * maxSpeed;
+    this.drivetrainSubsystem.tankDrive(leftSpeed, rightSpeed);
   }
 
   @Override

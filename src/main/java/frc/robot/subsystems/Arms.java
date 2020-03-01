@@ -7,18 +7,16 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class Arms extends SubsystemBase {
-  /**
-   * Creates a new Arms.
-   */
-  public Arms() {
 
-  }
+  PWMVictorSPX armMotor = new PWMVictorSPX(Constants.armMotorPWM);
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void runArmMotor(double speed) {
+    System.out.println("running arms: " + speed);
+    armMotor.set(speed);
   }
 }

@@ -15,7 +15,10 @@ public final class Constants {
 
   public static final int leftMotorsPWM = 0;
   public static final int rightMotorsPWM = 1;
+  public static final int intakeMotorPWM = 4;
+  public static final int armMotorPWM = 3;
 
   public static final int driverGamepadPort = 0;
+  public static final int operatorGamepadPort = 1;
 
 }

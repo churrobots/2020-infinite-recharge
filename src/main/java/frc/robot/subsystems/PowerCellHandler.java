@@ -7,18 +7,16 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class PowerCellHandler extends SubsystemBase {
-  /**
-   * Creates a new PowerCellHandler.
-   */
-  public PowerCellHandler() {
 
-  }
+  PWMVictorSPX intakeMotor = new PWMVictorSPX(Constants.intakeMotorPWM);
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void runPowercellMotor(double speed) {
+    System.out.println("running powercell:" + speed);
+    intakeMotor.set(speed);
   }
 }
