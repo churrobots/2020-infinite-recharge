@@ -11,31 +11,37 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arms;
 
 public class RaiseArmUp extends CommandBase {
-  /**
-   * Creates a new RaiseArmUp.
-   */
+
   Arms arms;
-  public RaiseArmUp(Arms a) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(a);
-    arms = a;
+  double startTime;
+  double millisecondsUntilUp = 2000;
+
+  public RaiseArmUp(Arms arms) {
+    addRequirements(arms);
+    this.arms = arms;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    this.startTime = System.currentTimeMillis();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    arms.runArmMotor(0.25);
+    double elapsedMilliseconds = System.currentTimeMillis() - this.startTime;
+    if (elapsedMilliseconds > this.millisecondsUntilUp) {
+      this.arms.holdUp();
+    } else {
+      this.arms.moveUp();
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    arms.runArmMotor(0);
+    this.arms.holdUp();
   }
 
   // Returns true when the command should end.

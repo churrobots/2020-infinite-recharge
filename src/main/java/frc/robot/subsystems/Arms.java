@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -14,9 +15,32 @@ import frc.robot.Constants;
 public class Arms extends SubsystemBase {
 
   PWMVictorSPX armMotor = new PWMVictorSPX(Constants.armMotorPWM);
+  NetworkTableEntry powerToHoldUpArm;
+  NetworkTableEntry powerToHoldDownArm;
+  NetworkTableEntry powerToMoveArm;
+  double defaultPowerWhenNetworkTableIsEmpty = 0.25;
 
-  public void runArmMotor(double speed) {
-    System.out.println("running arms: " + speed);
-    armMotor.set(speed);
+  public Arms(NetworkTableEntry powerToHoldUpArm, NetworkTableEntry powerToHoldDownArm,
+      NetworkTableEntry powerToMoveArm) {
+    this.powerToHoldUpArm = powerToHoldUpArm;
+    this.powerToHoldDownArm = powerToHoldDownArm;
+    this.powerToMoveArm = powerToMoveArm;
   }
+
+  public void moveUp() {
+    this.armMotor.set(this.powerToMoveArm.getDouble(this.defaultPowerWhenNetworkTableIsEmpty));
+  }
+
+  public void moveDown() {
+    this.armMotor.set(-1 * this.powerToMoveArm.getDouble(this.defaultPowerWhenNetworkTableIsEmpty));
+  }
+
+  public void holdUp() {
+    this.armMotor.set(this.powerToHoldUpArm.getDouble(this.defaultPowerWhenNetworkTableIsEmpty));
+  }
+
+  public void holdDown() {
+    this.armMotor.set(-1 * this.powerToHoldDownArm.getDouble(this.defaultPowerWhenNetworkTableIsEmpty));
+  }
+
 }
