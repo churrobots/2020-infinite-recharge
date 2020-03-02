@@ -21,6 +21,7 @@ import frc.robot.helpers.Gamepad;
 import java.util.Map;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -61,6 +62,10 @@ public class RobotContainer {
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("min", 0, "max", 1))
         .getEntry();
+
+    // Connect to all the sensors.
+    PowerDistributionPanel pdp = new PowerDistributionPanel(0);
+    Shuffleboard.getTab("Tuning").add(pdp);
 
     // Connect to all the outputs.
     Arms arms = new Arms(powerToHoldUpArm, powerToHoldDownArm, powerToMoveArm);
