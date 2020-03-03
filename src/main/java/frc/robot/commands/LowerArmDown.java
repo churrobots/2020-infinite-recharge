@@ -8,13 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Tuner;
 import frc.robot.subsystems.Arms;
 
 public class LowerArmDown extends CommandBase {
 
   Arms arms;
   double startTime;
-  double millisecondsUntilDown = 1500;
+  double millisecondsUntilDown = Tuner.getSecondsToMoveArm() * 1000;
 
   public LowerArmDown(Arms arms) {
     addRequirements(arms);

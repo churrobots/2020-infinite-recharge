@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Tuner;
 import frc.robot.subsystems.PowerCellHandler;
 
 public class IntakePowercells extends CommandBase {
@@ -30,7 +31,7 @@ public class IntakePowercells extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    powerCellHandler.runPowercellMotor(-1);
+    powerCellHandler.runPowercellMotor(-1 * Tuner.getPowerToIntakePowercells());
   }
 
   // Called once the command ends or is interrupted.

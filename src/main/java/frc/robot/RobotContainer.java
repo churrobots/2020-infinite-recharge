@@ -42,33 +42,16 @@ public class RobotContainer {
 
   public RobotContainer() {
 
+    // Default select the Tuner tab
+    // TODO: select a game-time tab later
+    Shuffleboard.selectTab("Tuner");
+
     // Connect to all the inputs (gamepads and shuffleboard).
     Gamepad driverGamepad = new Gamepad(Constants.driverGamepadPort);
     Gamepad operatorGamepad = new Gamepad(Constants.operatorGamepadPort);
 
-    ShuffleboardLayout armsTuner = Shuffleboard.getTab("Tuning")
-        .getLayout("Arms", BuiltInLayouts.kList)
-        .withSize(5, 4)
-        .withPosition(0, 0);
-    NetworkTableEntry powerToHoldUpArm = armsTuner.add("Power to hold arm UP", 0)
-        .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0, "max", 1))
-        .getEntry();
-    NetworkTableEntry powerToHoldDownArm = armsTuner.add("Power to hold arm DOWN", 0)
-        .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0, "max", 1))
-        .getEntry();
-    NetworkTableEntry powerToMoveArm = armsTuner.add("Power to MOVE arm", 0.25)
-        .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0, "max", 1))
-        .getEntry();
-
-    // Connect to all the sensors.
-    PowerDistributionPanel pdp = new PowerDistributionPanel(0);
-    Shuffleboard.getTab("Tuning").add(pdp);
-
     // Connect to all the outputs.
-    Arms arms = new Arms(powerToHoldUpArm, powerToHoldDownArm, powerToMoveArm);
+    Arms arms = new Arms();
     PowerCellHandler powerCellHandler = new PowerCellHandler();
     DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
 

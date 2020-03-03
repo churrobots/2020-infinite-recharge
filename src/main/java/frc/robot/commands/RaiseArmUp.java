@@ -8,13 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Tuner;
 import frc.robot.subsystems.Arms;
 
 public class RaiseArmUp extends CommandBase {
 
   Arms arms;
   double startTime;
-  double millisecondsUntilUp = 2000;
+  double millisecondsUntilUp = Tuner.getSecondsToMoveArm() * 1000;
 
   public RaiseArmUp(Arms arms) {
     addRequirements(arms);

@@ -16,7 +16,6 @@ public class PowerCellHandler extends SubsystemBase {
   PWMVictorSPX intakeMotor = new PWMVictorSPX(Constants.intakeMotorPWM);
 
   public void runPowercellMotor(double speed) {
-    System.out.println("running powercell:" + speed);
     intakeMotor.set(speed);
   }
 }
