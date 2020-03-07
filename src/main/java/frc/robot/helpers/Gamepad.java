@@ -17,6 +17,9 @@ public class Gamepad {
   public final Button povLeft;
   public final Button povRight;
 
+  public final Button backButton;
+  public final Button startButton;
+
   public final Button leftBumper;
   public final Button rightBumper;
   public final Axis leftYAxis;
@@ -37,6 +40,9 @@ public class Gamepad {
       bButton = new JoystickButton(gamepad, 2);
       xButton = new JoystickButton(gamepad, 3);
       yButton = new JoystickButton(gamepad, 4);
+
+      backButton = new JoystickButton(gamepad, 7);
+      startButton = new JoystickButton(gamepad, 8);
 
       povUp = new POVButton(gamepad, 0);
       povDown = new POVButton(gamepad, 180);
