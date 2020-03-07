@@ -64,6 +64,30 @@ public class Gamepad {
 
   }
 
+  public Button getDualButton(Button button1, Button button2) {
+    Button dualButton = new DualButton(button1, button2);
+    return dualButton;
+  }
+
+  // We found this suggestion from the forums:
+  // https://www.chiefdelphi.com/t/can-you-bind-a-command-to-only-activate-when-2-buttons-are-held/347368/4
+  protected static class DualButton extends Button {
+
+    Button a;
+    Button b;
+
+    public DualButton(Button a, Button b) {
+      this.a = a;
+      this.b = b;
+    }
+
+    @Override
+    public boolean get() {
+      return a.get() && b.get();
+    }
+
+  }
+
   public static class Axis {
 
     private Joystick _gamepad;
