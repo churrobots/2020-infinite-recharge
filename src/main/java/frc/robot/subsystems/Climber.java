@@ -8,17 +8,23 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import edu.wpi.first.wpilibj.PWMVictorSPX;
+
 
 public class Climber extends SubsystemBase {
-  /**
-   * Creates a new Climber.
-   */
+  PWMVictorSPX climbermotor = new PWMVictorSPX(Constants.climberMotorPWM);
+
   public Climber() {
-
+  
+  }
+  public void moveUp() {
+    this.climbermotor.set(1.0);
   }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void moveDown() {
+    this.climbermotor.set(-1);
   }
+  
 }
+
