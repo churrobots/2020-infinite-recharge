@@ -9,7 +9,7 @@ package frc.robot;
 
 import frc.robot.commands.DriveAsTank;
 import frc.robot.subsystems.Arms;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.PowerCellHandler;
 import frc.robot.commands.DriveForTime;
 import frc.robot.commands.IntakePowercells;
@@ -53,19 +53,19 @@ public class RobotContainer {
     // Connect to all the outputs.
     Arms arms = new Arms();
     PowerCellHandler powerCellHandler = new PowerCellHandler();
-    DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
+    Drivetrain drivetrain = new Drivetrain();
 
     // Describe when the commands should be scheduled.
-    this.autonomousCommand = new DriveForTime(drivetrainSubsystem, 2, 0.2, 0.2);
+    this.autonomousCommand = new DriveForTime(drivetrain, 2, 0.2, 0.2);
 
-    operatorGamepad.buttonWest.whenPressed(new RaiseArmUp(arms));
-    operatorGamepad.buttonSouth.whenPressed(new LowerArmDown(arms));
+    operatorGamepad.xButton.whenPressed(new RaiseArmUp(arms));
+    operatorGamepad.aButton.whenPressed(new LowerArmDown(arms));
     operatorGamepad.leftBumper.whileHeld(new IntakePowercells(powerCellHandler));
     operatorGamepad.rightBumper.whileHeld(new ReleasePowercells(powerCellHandler));
 
     arms.setDefaultCommand(new RaiseArmUp(arms));
-    drivetrainSubsystem.setDefaultCommand(
-        new DriveAsTank(drivetrainSubsystem, driverGamepad.leftYAxis, driverGamepad.rightYAxis, driverGamepad.rightAnalogTrigger));
+    drivetrain.setDefaultCommand(
+        new DriveAsTank(drivetrain, driverGamepad.leftYAxis, driverGamepad.rightYAxis, driverGamepad.rightAnalogTrigger));
   }
 
   public Command getAutonomousCommand() {

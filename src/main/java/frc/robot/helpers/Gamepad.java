@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class Gamepad {
 
-  public final Button buttonSouth;
-  public final Button buttonEast;
-  public final Button buttonWest;
-  public final Button buttonNorth;
+  public final Button aButton;
+  public final Button bButton;
+  public final Button xButton;
+  public final Button yButton;
   public final Button leftBumper;
   public final Button rightBumper;
   public final Axis leftYAxis;
@@ -26,10 +26,10 @@ public class Gamepad {
     // TODO: allow different gamepad types
     // if (gamepadType == "LogitechF310") {
 
-      buttonSouth = new JoystickButton(gamepad, 1);
-      buttonEast = new JoystickButton(gamepad, 2);
-      buttonWest = new JoystickButton(gamepad, 3);
-      buttonNorth = new JoystickButton(gamepad, 4);
+      aButton = new JoystickButton(gamepad, 1);
+      bButton = new JoystickButton(gamepad, 2);
+      xButton = new JoystickButton(gamepad, 3);
+      yButton = new JoystickButton(gamepad, 4);
 
       leftBumper = new JoystickButton(gamepad, 5);
       rightBumper = new JoystickButton(gamepad, 6);

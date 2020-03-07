@@ -8,16 +8,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.Drivetrain;
 
 public class DriveForTime extends CommandBase {
 
-  protected DrivetrainSubsystem drivetrainSubsystem;
+  protected Drivetrain drivetrainSubsystem;
   protected double secondsToDrive;
   protected double leftSpeed;
   protected double rightSpeed;
 
-  public DriveForTime(DrivetrainSubsystem drivetrainSubsystem, double secondsToDrive, double leftSpeed, double rightSpeed) {
+  public DriveForTime(Drivetrain drivetrainSubsystem, double secondsToDrive, double leftSpeed, double rightSpeed) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.addRequirements(drivetrainSubsystem);
     this.drivetrainSubsystem = drivetrainSubsystem;

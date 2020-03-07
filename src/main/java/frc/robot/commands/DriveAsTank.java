@@ -9,7 +9,7 @@ package frc.robot.commands;
 
 import frc.robot.Tuner;
 import frc.robot.helpers.Gamepad.Axis;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -17,12 +17,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  */
 public class DriveAsTank extends CommandBase {
 
-  protected final DrivetrainSubsystem drivetrainSubsystem;
+  protected final Drivetrain drivetrainSubsystem;
   protected final Axis leftAxis;
   protected final Axis rightAxis;
   protected final Axis boostAxis;
 
-  public DriveAsTank(DrivetrainSubsystem drivetrainSubsystem, Axis leftAxis, Axis rightAxis, Axis boostAxis) {
+  public DriveAsTank(Drivetrain drivetrainSubsystem, Axis leftAxis, Axis rightAxis, Axis boostAxis) {
     this.drivetrainSubsystem = drivetrainSubsystem;
     this.leftAxis = leftAxis;
     this.rightAxis = rightAxis;

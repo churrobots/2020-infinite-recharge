@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 
-public class DrivetrainSubsystem extends SubsystemBase {
+public class Drivetrain extends SubsystemBase {
 
   protected DifferentialDrive differentialDrive;
 
-  public DrivetrainSubsystem() {
+  public Drivetrain() {
 
     PWMVictorSPX leftMotors = new PWMVictorSPX(Constants.leftMotorsPWM);
     PWMVictorSPX rightMotors = new PWMVictorSPX(Constants.rightMotorsPWM);
