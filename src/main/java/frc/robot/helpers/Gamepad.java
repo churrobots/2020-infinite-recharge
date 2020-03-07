@@ -3,6 +3,7 @@ package frc.robot.helpers;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 public class Gamepad {
 
@@ -10,6 +11,12 @@ public class Gamepad {
   public final Button bButton;
   public final Button xButton;
   public final Button yButton;
+
+  public final Button povUp;
+  public final Button povDown;
+  public final Button povLeft;
+  public final Button povRight;
+
   public final Button leftBumper;
   public final Button rightBumper;
   public final Axis leftYAxis;
@@ -30,6 +37,11 @@ public class Gamepad {
       bButton = new JoystickButton(gamepad, 2);
       xButton = new JoystickButton(gamepad, 3);
       yButton = new JoystickButton(gamepad, 4);
+
+      povUp = new POVButton(gamepad, 0);
+      povDown = new POVButton(gamepad, 180);
+      povLeft = new POVButton(gamepad, 270);
+      povRight = new POVButton(gamepad, 90);
 
       leftBumper = new JoystickButton(gamepad, 5);
       rightBumper = new JoystickButton(gamepad, 6);
