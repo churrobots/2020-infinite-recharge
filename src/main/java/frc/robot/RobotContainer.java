@@ -7,8 +7,11 @@
 
 package frc.robot;
 
+import frc.robot.commands.Climberdown;
+import frc.robot.commands.Climberup;
 import frc.robot.commands.DriveAsTank;
 import frc.robot.subsystems.Arms;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.PowerCellHandler;
 import frc.robot.commands.DriveForTime;
@@ -54,6 +57,7 @@ public class RobotContainer {
     Arms arms = new Arms();
     PowerCellHandler powerCellHandler = new PowerCellHandler();
     Drivetrain drivetrain = new Drivetrain();
+    Climber climber = new Climber();
 
     // Describe when the commands should be scheduled.
     this.autonomousCommand = new DriveForTime(drivetrain, 2, 0.2, 0.2);
@@ -62,7 +66,9 @@ public class RobotContainer {
     operatorGamepad.aButton.whenPressed(new LowerArmDown(arms));
     operatorGamepad.leftBumper.whileHeld(new IntakePowercells(powerCellHandler));
     operatorGamepad.rightBumper.whileHeld(new ReleasePowercells(powerCellHandler));
-
+    operatorGamepad.povUp.whileHeld(new Climberup(climber));
+    operatorGamepad.getDualButton(operatorGamepad.backButton, operatorGamepad.startButton)
+        .whileHeld(new Climberdown(climber));
     arms.setDefaultCommand(new RaiseArmUp(arms));
     drivetrain.setDefaultCommand(
         new DriveAsTank(drivetrain, driverGamepad.leftYAxis, driverGamepad.rightYAxis, driverGamepad.rightAnalogTrigger));
