@@ -18,11 +18,6 @@ public class Climberdown extends CommandBase {
     myClimber = aClimber;
   }
 
-
-  public Climberdown() {
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
