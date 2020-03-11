@@ -16,14 +16,18 @@ public class Climber extends SubsystemBase {
   PWMVictorSPX climbermotor = new PWMVictorSPX(Constants.climberMotorPWM);
 
   public Climber() {
-  
   }
+
   public void moveUp() {
-    this.climbermotor.set(1.0);
+    // Resets the winch
+    // this.climbermotor.set(-0.15);
+    this.stop();
   }
 
   public void moveDown() {
-    this.climbermotor.set(-1);
+    // Runs the winch out
+    // this.climbermotor.set(0.50);
+    this.stop();
   }
 
   public void stop() {
