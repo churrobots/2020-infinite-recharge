@@ -20,13 +20,13 @@ public class Climber extends SubsystemBase {
 
   public void reset() {
     // Resets the winch
-    this.climbermotor.set(-0.15);
+    this.climbermotor.set(0.15);
     
   }
 
   public void run() {
     // Runs the winch out
-    this.climbermotor.set(1.0);
+    this.climbermotor.set(-1.0);
     
   }
 
