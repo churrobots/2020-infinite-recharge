@@ -30,11 +30,11 @@ public final class Tuner {
   }
 
   public static final double getPowerToIntakePowercells() {
-    return powerToIntakePowercells.getDouble(defaultIntakePower);
+    return defaultIntakePower;
   }
 
   public static final double getPowerToEjectPowercells() {
-    return powerToEjectPowercells.getDouble(defaultIntakePower);
+    return defaultIntakePower;
   }
 
   public static final double getMaxNonBoostDrivePower() {
@@ -59,11 +59,6 @@ public final class Tuner {
   protected static final ShuffleboardLayout armsPanel = tunerTab
       .getLayout("Arms", BuiltInLayouts.kList)
       .withPosition(4, 0)
-      .withSize(4, 4);
-
-  protected static final ShuffleboardLayout intakePanel = tunerTab
-      .getLayout("Intake", BuiltInLayouts.kList)
-      .withPosition(8, 0)
       .withSize(4, 4);
 
   protected static final ShuffleboardLayout drivetrainPanel = tunerTab
@@ -93,18 +88,6 @@ public final class Tuner {
       .addPersistent("Seconds for arm to FINISH move", defaultArmMoveSeconds)
       .withWidget(BuiltInWidgets.kNumberSlider)
       .withProperties(Map.of("min", 0, "max", 4))
-      .getEntry();
-
-  protected static final NetworkTableEntry powerToEjectPowercells = intakePanel
-      .addPersistent("Roller power to EJECT", defaultIntakePower)
-      .withWidget(BuiltInWidgets.kNumberSlider)
-      .withProperties(Map.of("min", 0, "max", 1))
-      .getEntry();
-
-  protected static final NetworkTableEntry powerToIntakePowercells = intakePanel
-      .addPersistent("Roller power to INTAKE", defaultIntakePower)
-      .withWidget(BuiltInWidgets.kNumberSlider)
-      .withProperties(Map.of("min", 0, "max", 1))
       .getEntry();
 
   protected static final NetworkTableEntry maxPowerToNonBoostDrive = drivetrainPanel
