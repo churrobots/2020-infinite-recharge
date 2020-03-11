@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 
-public class Climberup extends CommandBase {
+public class Runclimber extends CommandBase {
 
   Climber myClimber;
 
-  public Climberup(Climber aClimber) {
+  public Runclimber(Climber aClimber) {
     addRequirements(aClimber);
     myClimber = aClimber;
   }
@@ -27,7 +27,7 @@ public class Climberup extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    myClimber.moveUp();
+    myClimber.run();
   }
 
   // Called once the command ends or is interrupted.

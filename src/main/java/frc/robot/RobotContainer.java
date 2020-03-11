@@ -7,8 +7,8 @@
 
 package frc.robot;
 
-import frc.robot.commands.Climberdown;
-import frc.robot.commands.Climberup;
+import frc.robot.commands.Resetclimber;
+import frc.robot.commands.Runclimber;
 import frc.robot.commands.DriveAsTank;
 import frc.robot.subsystems.Arms;
 import frc.robot.subsystems.Climber;
@@ -58,12 +58,10 @@ public class RobotContainer {
     operatorGamepad.aButton.whenPressed(new LowerArmDown(arms));
     operatorGamepad.leftBumper.whileHeld(new IntakePowercells(powerCellHandler));
     operatorGamepad.rightBumper.whileHeld(new ReleasePowercells(powerCellHandler));
-    operatorGamepad.povUp.whileHeld(new Climberup(climber));
     operatorGamepad.getDualButton(operatorGamepad.backButton, operatorGamepad.startButton)
-        .whileHeld(new Climberdown(climber));
+        .whileHeld(new Runclimber(climber));
     arms.setDefaultCommand(new RaiseArmUp(arms));
-    drivetrain.setDefaultCommand(
-        new DriveAsTank(drivetrain, driverGamepad.leftYAxis, driverGamepad.rightYAxis, driverGamepad.rightAnalogTrigger));
+    drivetrain.setDefaultCommand(new DriveAsTank(drivetrain, driverGamepad.leftYAxis, driverGamepad.rightYAxis, driverGamepad.rightAnalogTrigger));
   }
 
   public Command getAutonomousCommand() {

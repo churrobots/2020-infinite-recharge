@@ -10,10 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 
-public class Climberdown extends CommandBase {
+public class Resetclimber extends CommandBase {
   Climber myClimber;
 
-  public Climberdown(Climber aClimber) {
+  public Resetclimber(Climber aClimber) {
     addRequirements(aClimber);
     myClimber = aClimber;
   }
@@ -26,7 +26,7 @@ public class Climberdown extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    myClimber.moveDown();
+    myClimber.reset();
   }
 
 

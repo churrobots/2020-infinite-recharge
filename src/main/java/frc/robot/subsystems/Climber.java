@@ -18,16 +18,16 @@ public class Climber extends SubsystemBase {
   public Climber() {
   }
 
-  public void moveUp() {
+  public void reset() {
     // Resets the winch
-    // this.climbermotor.set(-0.15);
-    this.stop();
+    this.climbermotor.set(-0.15);
+    
   }
 
-  public void moveDown() {
+  public void run() {
     // Runs the winch out
-    // this.climbermotor.set(0.50);
-    this.stop();
+    this.climbermotor.set(1.0);
+    
   }
 
   public void stop() {
