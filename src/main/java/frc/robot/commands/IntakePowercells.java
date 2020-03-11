@@ -31,7 +31,7 @@ public class IntakePowercells extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    powerCellHandler.runPowercellMotor(-1 * Tuner.getPowerToIntakePowercells());
+    powerCellHandler.runPowercellMotor(Tuner.getPowerToIntakePowercells());
   }
 
   // Called once the command ends or is interrupted.

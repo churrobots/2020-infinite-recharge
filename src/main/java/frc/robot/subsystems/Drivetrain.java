@@ -20,6 +20,8 @@ public class Drivetrain extends SubsystemBase {
 
     PWMVictorSPX leftMotors = new PWMVictorSPX(Constants.leftMotorsPWM);
     PWMVictorSPX rightMotors = new PWMVictorSPX(Constants.rightMotorsPWM);
+    leftMotors.setInverted(true);
+    rightMotors.setInverted(true);
     this.differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
 
   }

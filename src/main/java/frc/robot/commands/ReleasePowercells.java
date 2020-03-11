@@ -30,7 +30,7 @@ public class ReleasePowercells extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    powerCellHandler.runPowercellMotor(Tuner.getPowerToEjectPowercells());
+    powerCellHandler.runPowercellMotor(-1 * Tuner.getPowerToEjectPowercells());
   }
 
   // Called once the command ends or is interrupted.
