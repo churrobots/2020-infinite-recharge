@@ -15,12 +15,12 @@ import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.PowerCellHandler;
 import frc.robot.commands.DriveForTime;
+import frc.robot.commands.Driveforward;
 import frc.robot.commands.IntakePowercells;
 import frc.robot.commands.LowerArmDown;
 import frc.robot.commands.RaiseArmUp;
 import frc.robot.commands.ReleasePowercells;
 import frc.robot.helpers.Gamepad;
-
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -53,8 +53,9 @@ public class RobotContainer {
     Drivetrain drivetrain = new Drivetrain();
     Climber climber = new Climber();
 
+
     // Describe when the commands should be scheduled.
-    this.autonomousCommand = new DriveForTime(drivetrain, 2, 0.2, 0.2);
+    this.autonomousCommand = new Driveforward(drivetrain);
 
     operatorGamepad.xButton.whenPressed(new RaiseArmUp(arms));
     operatorGamepad.aButton.whenPressed(new LowerArmDown(arms));
