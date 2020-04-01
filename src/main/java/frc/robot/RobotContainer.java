@@ -23,6 +23,7 @@ import frc.robot.helpers.Gamepad;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -61,7 +62,9 @@ public class RobotContainer {
     operatorGamepad.getDualButton(operatorGamepad.backButton, operatorGamepad.startButton)
         .whileHeld(new Runclimber(climber));
     arms.setDefaultCommand(new RaiseArmUp(arms));
-    drivetrain.setDefaultCommand(new DriveAsTank(drivetrain, driverGamepad.leftYAxis, driverGamepad.rightYAxis, driverGamepad.rightAnalogTrigger));
+    drivetrain.setDefaultCommand(new DriveAsTank(drivetrain, driverGamepad.leftYAxis, driverGamepad.rightYAxis,
+        driverGamepad.rightAnalogTrigger));
+    SmartDashboard.putData("Reset Climber", new Resetclimber(climber));
   }
 
   public Command getAutonomousCommand() {
