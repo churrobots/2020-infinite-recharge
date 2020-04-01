@@ -15,7 +15,7 @@ public class LowerArmDown extends CommandBase {
 
   Arms arms;
   double startTime;
-  double millisecondsUntilDown = Tuner.getSecondsToMoveArm() * 1000;
+  double millisecondsUntilDown;
 
   public LowerArmDown(Arms arms) {
     addRequirements(arms);
@@ -26,6 +26,7 @@ public class LowerArmDown extends CommandBase {
   @Override
   public void initialize() {
     this.startTime = System.currentTimeMillis();
+    this.millisecondsUntilDown = Tuner.getSecondsToMoveArm() * 1000;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
