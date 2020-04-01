@@ -21,6 +21,7 @@ import frc.robot.commands.RaiseArmUp;
 import frc.robot.commands.ReleasePowercells;
 import frc.robot.helpers.Gamepad;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -38,8 +39,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     // Default select the Tuner tab
-    // TODO: select a game-time tab later
-    Shuffleboard.selectTab("Tuner");
+    Shuffleboard.selectTab("game");
 
     // Connect to all the inputs (gamepads and shuffleboard).
     Gamepad driverGamepad = new Gamepad(Constants.driverGamepadPort);
