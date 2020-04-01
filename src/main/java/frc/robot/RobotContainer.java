@@ -45,6 +45,7 @@ public class RobotContainer {
     // Connect to all the inputs (gamepads and shuffleboard).
     Gamepad driverGamepad = new Gamepad(Constants.driverGamepadPort);
     Gamepad operatorGamepad = new Gamepad(Constants.operatorGamepadPort);
+    CameraServer.getInstance().startAutomaticCapture();
 
     // Connect to all the outputs.
     Arms arms = new Arms();
