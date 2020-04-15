@@ -9,12 +9,13 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 
 
 public class Climber extends SubsystemBase {
   PWMVictorSPX climbermotor = new PWMVictorSPX(Constants.climberMotorPWM);
-
+  DigitalInput hooksensor = new DigitalInput(0);
   public Climber() {
     
   }
@@ -24,10 +25,18 @@ public class Climber extends SubsystemBase {
     this.climbermotor.set(0.25);
   }
 
+  public void runWithSensor() {
+   if (hooksensor.get()){
+    this.stop();
+   }
+   else {
+     this.run();
+   }
+  }
+
   public void run() {
     // Runs the winch out
     this.climbermotor.set(-1.0);
-    
   }
 
   public void stop() {
