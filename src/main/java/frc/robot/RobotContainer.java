@@ -9,6 +9,7 @@ package frc.robot;
 
 import frc.robot.commands.Resetclimber;
 import frc.robot.commands.Runclimber;
+import frc.robot.commands.Swapcameras;
 import frc.robot.commands.DriveAsTank;
 import frc.robot.subsystems.Arms;
 import frc.robot.subsystems.Climber;
@@ -43,9 +44,9 @@ public class RobotContainer {
     Shuffleboard.selectTab("game");
 
     // Connect to all the inputs (gamepads and shuffleboard).
-    Gamepad driverGamepad = new Gamepad(Constants.driverGamepadPort);
+    Gamepad driverGamepad = new Gamepad(Constants.driverGamepadPort); 
     Gamepad operatorGamepad = new Gamepad(Constants.operatorGamepadPort);
-    CameraServer.getInstance().startAutomaticCapture();
+    CameraServer.getInstance().startAutomaticCapture(0);
 
     // Connect to all the outputs.
     Arms arms = new Arms();
@@ -67,6 +68,7 @@ public class RobotContainer {
     drivetrain.setDefaultCommand(new DriveAsTank(drivetrain, driverGamepad.leftYAxis, driverGamepad.rightYAxis,
         driverGamepad.rightAnalogTrigger));
     SmartDashboard.putData("Reset Climber", new Resetclimber(climber));
+    SmartDashboard.putData("Swap Camera", new Swapcameras());
   }
 
   public Command getAutonomousCommand() {

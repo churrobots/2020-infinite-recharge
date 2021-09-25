@@ -39,7 +39,7 @@ public class DriveAsTank extends CommandBase {
     double normalSpeed = Tuner.getMaxNonBoostDrivePower();
     double maxBoost = 1 - normalSpeed;
     double boost = boostAxis.get() * maxBoost;
-    double maxSpeed = normalSpeed + maxBoost * boost;
+    double maxSpeed = normalSpeed + (maxBoost * boost);
     double leftSpeed = this.leftAxis.get() * maxSpeed;
     double rightSpeed = this.rightAxis.get() * maxSpeed;
     this.drivetrainSubsystem.tankDrive(leftSpeed, rightSpeed);
