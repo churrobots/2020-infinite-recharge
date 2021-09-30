@@ -27,7 +27,7 @@ public class Runclimber extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    myClimber.runWithSensor();
+    myClimber.run();
   }
 
   // Called once the command ends or is interrupted.
