@@ -21,6 +21,7 @@ import frc.robot.commands.LowerArmDown;
 import frc.robot.commands.RaiseArmUp;
 import frc.robot.commands.ReleasePowercells;
 import frc.robot.helpers.Gamepad;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -45,7 +46,6 @@ public class RobotContainer {
     // Connect to all the inputs (gamepads and shuffleboard).
     Gamepad driverGamepad = new Gamepad(Constants.driverGamepadPort); 
     Gamepad operatorGamepad = new Gamepad(Constants.operatorGamepadPort);
-    CameraServer.getInstance().startAutomaticCapture(0);
 
     // Connect to all the outputs.
     Arms arms = new Arms();
@@ -72,6 +72,12 @@ public class RobotContainer {
     // should only do this in the pits after releasing the ratchet
     driverGamepad.getDualButton(driverGamepad.backButton, driverGamepad.startButton)
         .whileHeld(new Resetclimber(climber));
+
+    // Setup cameras
+    UsbCamera shootingCamera = CameraServer.getInstance().startAutomaticCapture(Constants.shootingCamera);
+    UsbCamera climberCamera = CameraServer.getInstance().startAutomaticCapture(Constants.climberCamera);
+    operatorGamepad.povUp.whenPressed(new Swapcameras(climberCamera));
+    operatorGamepad.povDown.whenPressed(new Swapcameras(shootingCamera));
   }
 
   public Command getAutonomousCommand() {

@@ -19,6 +19,9 @@ public final class Constants {
   public static final int armMotorPWM = 4;
   public static final int climberMotorPWM = 3;
 
+  public static final int shootingCamera = 0;
+  public static final int climberCamera = 1;
+
   public static final int driverGamepadPort = 0;
   public static final int operatorGamepadPort = 1;
 
