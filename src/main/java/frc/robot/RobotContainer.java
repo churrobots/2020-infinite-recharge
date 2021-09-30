@@ -53,7 +53,6 @@ public class RobotContainer {
     Drivetrain drivetrain = new Drivetrain();
     Climber climber = new Climber();
 
-
     // Describe when the commands should be scheduled.
     this.autonomousCommand = new Driveforward(drivetrain);
 
@@ -61,13 +60,18 @@ public class RobotContainer {
     operatorGamepad.aButton.whenPressed(new LowerArmDown(arms));
     operatorGamepad.leftBumper.whileHeld(new IntakePowercells(powerCellHandler));
     operatorGamepad.rightBumper.whileHeld(new ReleasePowercells(powerCellHandler));
-    operatorGamepad.getDualButton(operatorGamepad.backButton, operatorGamepad.startButton)
-        .whileHeld(new Runclimber(climber));
     arms.setDefaultCommand(new RaiseArmUp(arms));
     drivetrain.setDefaultCommand(new DriveAsTank(drivetrain, driverGamepad.leftYAxis, driverGamepad.rightYAxis,
         driverGamepad.rightAnalogTrigger));
-    SmartDashboard.putData("Reset Climber", new Resetclimber(climber));
-    SmartDashboard.putData("Swap Camera", new Swapcameras());
+
+    // Operator can run the climber (forward) using both back+start buttons
+    operatorGamepad.getDualButton(operatorGamepad.backButton, operatorGamepad.startButton)
+        .whileHeld(new Runclimber(climber));
+
+    // Driver can RESET the climber (backward) using both back+start buttons
+    // should only do this in the pits after releasing the ratchet
+    driverGamepad.getDualButton(driverGamepad.backButton, driverGamepad.startButton)
+        .whileHeld(new Resetclimber(climber));
   }
 
   public Command getAutonomousCommand() {
