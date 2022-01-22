@@ -23,10 +23,12 @@ public class Drivetrain extends SubsystemBase {
     leftMotors.setInverted(true);
     rightMotors.setInverted(true);
     this.differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
-
   }
 
   public void tankDrive(double leftSpeed, double rightSpeed) {
+    // TODO: consider filtering for smoother joystick driving
+    // https://docs.wpilib.org/en/stable/docs/software/advanced-controls/filters/slew-rate-limiter.html
+    // TODO: also could just try using the version of tankDrive that takes a 3rd argument true to decrease sensitivity at low speeds
     this.differentialDrive.tankDrive(leftSpeed, rightSpeed);
   }
 
