@@ -15,7 +15,8 @@ public final class Constants {
 
   public static final int leftMotorsPWM = 1;
   public static final int rightMotorsPWM = 0;
-  public static final int intakeMotorPWM = 2;
+  public static final int leftIntakeMotorPWM = 2;
+  public static final int rightIntakeMotorPWM = 2;
   public static final int armMotorPWM = 4;
   public static final int climberMotorPWM = 3;
 

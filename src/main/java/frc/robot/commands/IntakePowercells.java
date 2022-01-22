@@ -12,15 +12,15 @@ import frc.robot.Tuner;
 import frc.robot.subsystems.PowerCellHandler;
 
 public class IntakePowercells extends CommandBase {
-  /**
-   * Creates a new IntakePowercells.
-   */
-  PowerCellHandler powerCellHandler;
 
-  public IntakePowercells(PowerCellHandler p) {
+  PowerCellHandler powerCellHandler;
+  boolean isRightSide;
+
+  public IntakePowercells(PowerCellHandler p, boolean isRightSide) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(p);
-    powerCellHandler = p;
+    this.powerCellHandler = p;
+    this.isRightSide = isRightSide;
   }
 
   // Called when the command is initially scheduled.
@@ -31,13 +31,19 @@ public class IntakePowercells extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    powerCellHandler.runPowercellMotor(Tuner.getPowerToIntakePowercells());
+    double speed = Tuner.getPowerToIntakePowercells();
+    if (isRightSide) {
+      powerCellHandler.runPowercellMotor(0.0, speed);
+    }
+    else {
+      powerCellHandler.runPowercellMotor(speed, 0.0);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    powerCellHandler.runPowercellMotor(0);
+    powerCellHandler.runPowercellMotor(0.0, 0.0);
   }
 
   // Returns true when the command should end.

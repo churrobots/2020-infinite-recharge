@@ -15,11 +15,15 @@ public class ReleasePowercells extends CommandBase {
   /**
    * Creates a new ReleasePowercells.
    */
+  boolean isRightSide;
+
   PowerCellHandler powerCellHandler;
-  public ReleasePowercells(PowerCellHandler p) {
+  public ReleasePowercells(PowerCellHandler p, boolean isRightSide) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(p);
-    powerCellHandler = p;
+    this.powerCellHandler = p;
+    this.isRightSide = isRightSide;
+
   }
 
   // Called when the command is initially scheduled.
@@ -30,13 +34,20 @@ public class ReleasePowercells extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    powerCellHandler.runPowercellMotor(-1 * Tuner.getPowerToEjectPowercells());
+    double speed = Tuner.getPowerToEjectPowercells();
+    if (isRightSide) {
+      powerCellHandler.runPowercellMotor(0.0, -1 * speed);
+    }
+    else {
+      powerCellHandler.runPowercellMotor(speed * -1, 0.0);
+
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    powerCellHandler.runPowercellMotor(0);
+    powerCellHandler.runPowercellMotor(0.0, 0.0);
   }
 
   // Returns true when the command should end.

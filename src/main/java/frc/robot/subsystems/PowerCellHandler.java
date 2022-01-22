@@ -13,9 +13,11 @@ import frc.robot.Constants;
 
 public class PowerCellHandler extends SubsystemBase {
 
-  PWMVictorSPX intakeMotor = new PWMVictorSPX(Constants.intakeMotorPWM);
+  PWMVictorSPX leftIntakeMotor = new PWMVictorSPX(Constants.leftIntakeMotorPWM);
+  PWMVictorSPX rightIntakeMotor = new PWMVictorSPX(Constants.rightIntakeMotorPWM);
 
-  public void runPowercellMotor(double speed) {
-    intakeMotor.set(speed);
+  public void runPowercellMotor(double leftSpeed, double rightSpeed) {
+    leftIntakeMotor.set(leftSpeed);
+    rightIntakeMotor.set(rightSpeed);
   }
 }

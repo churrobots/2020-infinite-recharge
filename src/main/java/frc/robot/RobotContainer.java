@@ -58,8 +58,10 @@ public class RobotContainer {
 
     operatorGamepad.xButton.whenPressed(new RaiseArmUp(arms));
     operatorGamepad.aButton.whenPressed(new LowerArmDown(arms));
-    operatorGamepad.leftBumper.whileHeld(new IntakePowercells(powerCellHandler));
-    operatorGamepad.rightBumper.whileHeld(new ReleasePowercells(powerCellHandler));
+    operatorGamepad.leftBumper.whileHeld(new IntakePowercells(powerCellHandler, false));
+    operatorGamepad.rightBumper.whileHeld(new IntakePowercells(powerCellHandler, true));
+    operatorGamepad.povUp.whileHeld(new ReleasePowercells(powerCellHandler, false));
+    operatorGamepad.yButton.whileHeld(new ReleasePowercells(powerCellHandler, true));
     arms.setDefaultCommand(new RaiseArmUp(arms));
     drivetrain.setDefaultCommand(new DriveAsTank(drivetrain, driverGamepad.leftYAxis, driverGamepad.rightYAxis,
         driverGamepad.rightAnalogTrigger));
