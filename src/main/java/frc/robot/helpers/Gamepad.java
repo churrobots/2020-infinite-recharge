@@ -22,9 +22,11 @@ public class Gamepad {
 
   public final Button leftBumper;
   public final Button rightBumper;
+
   public final Axis leftYAxis;
   public final Axis leftXAxis;
   public final Axis rightYAxis;
+  public final Axis rightXAxis;
   public final Axis leftAnalogTrigger;
   public final Axis rightAnalogTrigger;
   // TODO: add other axes and buttons
@@ -54,6 +56,7 @@ public class Gamepad {
 
       leftXAxis = new Axis(gamepad, 0);
       leftYAxis = new Axis(gamepad, 1);
+      rightXAxis = new Axis(gamepad, 4);
       rightYAxis = new Axis(gamepad, 5);
 
       leftAnalogTrigger = new Axis(gamepad, 2);
