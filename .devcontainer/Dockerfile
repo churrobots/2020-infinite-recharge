@@ -1,4 +1,4 @@
-FROM maven:3.6-jdk-11
+FROM maven:3.8-jdk-11
 
 ############################################################################################
 # Update these ARGs to match this year and the correct download
@@ -6,8 +6,15 @@ FROM maven:3.6-jdk-11
 # links to all of the WPILib tarballs here:
 # https://github.com/wpilibsuite/allwpilib/releases
 ############################################################################################
-ARG FRC_YEAR=2020
-ARG WPILIB_LINUX_DOWNLOAD=https://github.com/wpilibsuite/allwpilib/releases/download/v2020.2.2/WPILib_Linux-2020.2.2.tar.gz
+ARG FRC_YEAR=2022
+# WARNING: you have to also change the WPILib version and year in:
+# build.gradle (edu.wpi.first.GradleRIO version)
+# wpilib_preferences.json (projectYear)
+# WPILibNewCommands.json (version)
+# settings.gradle (frcYear)
+
+ARG WPILIB_LINUX_DOWNLOAD=https://github.com/wpilibsuite/allwpilib/releases/download/v2022.2.1/WPILib_Linux-2022.2.1.tar.gz
+ARG PHOENIX_LINUX_DOWNLOAD=https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.20.2.2/CTRE_Phoenix_FRC_Linux_5.20.2.zip
 ############################################################################################
 
 # Based on the VSCode Java development container example.
@@ -47,6 +54,12 @@ WORKDIR /home/$USERNAME/wpilib/$FRC_YEAR
 RUN wget -qO- $WPILIB_LINUX_DOWNLOAD > wpilib.tar.gz
 RUN tar -xf wpilib.tar.gz
 
+# Install Phoenix libraries
+RUN wget -qO- $PHOENIX_LINUX_DOWNLOAD > phoenix.zip
+RUN unzip -d ./phoenix phoenix.zip
+RUN cp -r phoenix/maven /home/$USERNAME/wpilib/$FRC_YEAR/maven
+RUN cp -r phoenix/vendordeps /home/$USERNAME/wpilib/$FRC_YEAR/vendordeps
+
 # Make sure git works inside the container
 RUN mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
@@ -59,4 +72,4 @@ RUN cp /tmp/repo/gradle gradle || true
 RUN cp /tmp/repo/build.gradle build.gradle || true
 RUN cp /tmp/repo/gradlew gradlew || true
 RUN cp /tmp/repo/settings.gradle settings.gradle || true
-RUN ./gradlew build -Dorg.gradle.java.home="/docker-java-home" || true
+RUN ./gradlew build --offline -Dorg.gradle.java.home="/docker-java-home" || true
