@@ -7,13 +7,14 @@ FROM maven:3.8-jdk-11
 # https://github.com/wpilibsuite/allwpilib/releases
 ############################################################################################
 ARG FRC_YEAR=2022
+ARG WPILIB_VERSION=2022.2.1
 # WARNING: you have to also change the WPILib version and year in:
 # build.gradle (edu.wpi.first.GradleRIO version)
 # wpilib_preferences.json (projectYear)
 # WPILibNewCommands.json (version)
 # settings.gradle (frcYear)
 
-ARG WPILIB_LINUX_DOWNLOAD=https://github.com/wpilibsuite/allwpilib/releases/download/v2022.2.1/WPILib_Linux-2022.2.1.tar.gz
+ARG WPILIB_LINUX_DOWNLOAD=https://github.com/wpilibsuite/allwpilib/releases/download/v$WPILIB_VERSION/WPILib_Linux-$WPILIB_VERSION.tar.gz
 ARG PHOENIX_LINUX_DOWNLOAD=https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.20.2.2/CTRE_Phoenix_FRC_Linux_5.20.2.zip
 ############################################################################################
 
@@ -55,6 +56,10 @@ RUN mkdir -p /home/$USERNAME/wpilib/$FRC_YEAR
 WORKDIR /home/$USERNAME/wpilib/$FRC_YEAR
 RUN wget -qO- $WPILIB_LINUX_DOWNLOAD > wpilib.tar.gz
 RUN tar -xf wpilib.tar.gz
+# The official installation uses a .NET based installer with a GUI, so
+# instead we attempt to manually install the artifacts and hope it works.
+RUN mv WPILib_Linux-$WPILIB_VERSION/WPILib_Linux-$WPILIB_VERSION-artifacts.tar.gz wpilib-artifacts.tar.gz
+RUN tar -xf wpilib-artifacts.tar.gz
 
 # Install Phoenix libraries
 RUN wget -qO- $PHOENIX_LINUX_DOWNLOAD > phoenix.zip
